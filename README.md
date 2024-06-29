@@ -16,7 +16,7 @@ Please refrain from opening issues about the following features, as they are ser
 - Native playlist downloading (you can download podcast episodes though)
 - Jam (hosting a Spotify Jam and joining it remotely requires Premium; only joining in-person works)
 
-In theory, implementing downloading/offline mode locally *should* be possible, but it will **not** be included in this tweak.
+It's possible to implement downloading locally, but it will never be included in EeveeSpotify (unless someone opens a pull request).
 
 ## Lyrics Support
 
@@ -28,7 +28,7 @@ EeveeSpotify replaces Spotify monthly limited lyrics with one of the following t
 
 - Musixmatch: The service Spotify uses. Provides time-synced lyrics for many songs, but you'll need a user token to use this source. To obtain the token, download Musixmatch from the App Store, sign up, then go to Settings > Get help > Copy debug info, and paste it into EeveeSpotify alert. You can also extract the token using MITM.
 
-If the tweak is unable to find a song or process the lyrics, you'll see a "Couldn't load the lyrics for this song" message. The lyrics might be wrong for some songs (e.g. another song, song article) when using Genius due to how the tweak searches songs. While I've made it work in most cases, kindly refrain from opening issues about it.
+If the tweak is unable to find a song or process the lyrics, you'll see a "Couldn't load the lyrics for this song" message. The lyrics might be wrong for some songs when using Genius due to how the tweak searches songs. While I've made it work in most cases, kindly refrain from opening issues about it.
 
 ## How It Works
 
@@ -40,6 +40,6 @@ The tweak patches this file while initializing; Spotify loads it and assumes you
 
 ![Hex](Images/hex.png)
 
-Tweak also changes query parameters `trackRows` and `video` in HTTP requests to true, so Spotify loads videos and not just track names at the artist page. It can stop working just like Spotilife, but so far, it works on the latest Spotify 8.9.## (Spotilife also patches `offline.bnk`, however, it changes obscure bytes that do nothing on new versions). 
+Tweak also sets `trackRowsEnabled` in `SPTFreeTierArtistHubRemoteURLResolver` to `true`, so Spotify loads not just track names on the artist page. It can stop working just like Spotilife, but so far, it works on the latest Spotify 8.9.## (Spotilife also patches `offline.bnk`, however, it changes obscure bytes that do nothing on new versions). 
 
 To open Spotify links in sideloaded app, use [OpenSpotifySafariExtension](https://github.com/BillyCurtis/OpenSpotifySafariExtension). Remember to activate it and allow access in Settings > Safari > Extensions.
